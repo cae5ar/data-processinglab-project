@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='site'>
+	<inherits name='com.google.gwt.user.User' />
+	<!-- <inherits name='com.google.gwt.user.theme.clean.Clean' /> -->
+	<inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
+	<inherits name="org.moxieapps.gwt.highcharts.Highcharts"/>
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.place.Place" />
+	<inherits name="com.google.gwt.i18n.I18N" />
+	<inherits name="com.google.gwt.logging.Logging" />
+	<inherits name="com.google.gwt.xml.XML"/>
+
+	<set-property name="gwt.logging.logLevel" value="INFO" />
+	<set-property name="gwt.logging.enabled" value="TRUE" />
+	<set-property name="gwt.logging.developmentModeHandler"
+		value="ENABLED" />
+	<set-property name="gwt.logging.systemHandler" value="DISABLED" />
+	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
+	<set-property name="gwt.logging.consoleHandler" value="ENABLED" />
+	<set-property name="gwt.logging.firebugHandler" value="ENABLED" />
+	<set-property name="compiler.stackMode" value="strip" />
+
+	<entry-point class='com.pstu.dtl.client.Site'/>
+	<extend-property name="locale" values="ru" />
+	<set-property name="locale" value="ru" />
+
+	<source path='client' />
+	<source path='shared' />
+
+	<replace-with class="com.pstu.dtl.client.mvp.ClientFactoryImpl">
+		<when-type-is class="com.pstu.dtl.client.mvp.ClientFactory" />
+	</replace-with>
+</module>

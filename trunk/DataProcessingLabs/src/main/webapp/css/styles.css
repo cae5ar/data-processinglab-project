@@ -1,0 +1,120 @@
+﻿body {
+	padding-top: 0px;
+}
+
+.period-edit-scroll {
+	max-height: 400px;
+	margin-top: 10px;
+}
+
+.series-edit-scroll {
+	max-height: 450px;
+}
+
+.series-edit-scroll .form-horizontal {
+	margin-bottom: 10px;
+}
+
+.row.table-container {
+	margin-top: 15px;
+}
+
+.row.without-margin {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.row.without-margin .form-horizontal .form-group {
+	margin: 0px;
+}
+
+.series-cell {
+	font-family: Segoe UI;
+	font-weight: bold;
+}
+
+.series-cell.value {
+	color: #6A7;
+}
+
+.series-cell.name {
+	color: #D65;
+}
+
+.period-edit-popup .modal-dialog {
+	width: 338px;
+}
+
+.row.period-edit-block {
+	margin-top: 0px;
+}
+
+.modal-dialog {
+	padding-top: 120px;
+}
+
+.modal-footer.text-left {
+	text-align: left;
+}
+
+.control-label.advanced-label {
+	float: left;
+	padding-right: 15px;
+	width: 200px;
+}
+
+.control-label.advanced-label.empty {
+	width: 0;
+}
+
+.advanced-input {
+	float: left;
+	width: 200px;
+}
+
+.glyphicon.glyphicon-asterisk {
+	color: #FF0000;
+}
+
+.period-remove-btn {
+	float: left;
+}
+
+.row.chart-presenter {
+	border: 1px solid #AFAFAF;
+	border-radius: 5px 5px 5px 5px;
+	margin-bottom: 10px;
+	min-height: 500px;
+}
+
+.chart-presenter>.block {
+	min-height: 500px;
+	padding-top: 10px;
+}
+
+.left.block {
+	border-right: 1px solid #AFAFAF;
+}
+
+.right.block {
+	
+}
+
+.gwt-CheckBox {
+	display: block;
+	padding: 5px 0;
+}
+
+.gwt-CheckBox label {
+	margin-left: 5px;
+}
+
+.float-right {
+	float: right;
+}
+
+.correlation-label {
+    border-top: 1px solid #BABABA;
+    padding: 8px 5px 10px 5px;
+    font-size: 16px;
+}

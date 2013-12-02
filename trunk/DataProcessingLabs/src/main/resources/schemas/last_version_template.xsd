@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.digimap.ru"
+    elementFormDefault="qualified"
+    xmlns="http://www.digimap.ru"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="num_interval_type">
+	<xs:annotation>
+	  <xs:documentation>Тип интервала</xs:documentation>
+	</xs:annotation>
+    <xs:restriction base="xs:integer">
+	  <xs:enumeration value="1">
+	    <xs:annotation>
+		  <xs:documentation>min_value меньше X меньше max_value</xs:documentation>
+	    </xs:annotation>
+	  </xs:enumeration>
+	  <xs:enumeration value="2">
+	    <xs:annotation>
+		  <xs:documentation>min_value меньше или равно X меньше max_value</xs:documentation>
+	    </xs:annotation>
+	  </xs:enumeration>
+	  <xs:enumeration value="3">
+	    <xs:annotation>
+		  <xs:documentation>min_value меньше X меньше или равно max_value</xs:documentation>
+	    </xs:annotation>
+	  </xs:enumeration>
+	  <xs:enumeration value="4">
+	    <xs:annotation>
+		  <xs:documentation>min_value меньше или равно X меньше или равно max_value</xs:documentation>
+	    </xs:annotation>
+	  </xs:enumeration>
+	  <xs:enumeration value="5">
+	    <xs:annotation>
+		  <xs:documentation>X меньше min_value</xs:documentation>
+	    </xs:annotation>
+	  </xs:enumeration>
+	  <xs:enumeration value="6">
+	    <xs:annotation>
+		  <xs:documentation>X меньше или равно min_value</xs:documentation>
+	    </xs:annotation>
+	  </xs:enumeration>
+	  <xs:enumeration value="7">
+	    <xs:annotation>
+		  <xs:documentation>X больше max_value</xs:documentation>
+	    </xs:annotation>
+	  </xs:enumeration>
+	  <xs:enumeration value="8">
+	    <xs:annotation>
+		  <xs:documentation>X больше или равно max_value</xs:documentation>
+	    </xs:annotation>
+	  </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="widget_type">
+	<xs:annotation>
+	  <xs:documentation>Тип виджета</xs:documentation>
+  	</xs:annotation>
+	<xs:restriction base="xs:string">
+	  <xs:enumeration value="MULTISEARCHSECT" />
+	  <xs:enumeration value="TAB" />
+	  <xs:enumeration value="SECTION" />
+  	  <xs:enumeration value="SPLITTER" />
+  	  <xs:enumeration value="HEADER" />	  
+	  <xs:enumeration value="TEXT" />
+	  <xs:enumeration value="COMBOBOX" />
+	  <xs:enumeration value="CHECKBOX" />
+      <xs:enumeration value="SLIDER" />
+	  <xs:enumeration value="CALENDAR" />
+	  <xs:enumeration value="CHECKLISTBOX" />
+	  <xs:enumeration value="TIMEMODEELEMENT" />
+	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="field_type">
+	<xs:annotation>
+	  <xs:documentation>Тип поля</xs:documentation>
+  	</xs:annotation>
+	<xs:restriction base="xs:string">
+	  <xs:enumeration value="UNKNOWN" />
+	  <xs:enumeration value="STRING" />
+	  <xs:enumeration value="INTEGER" />
+	  <xs:enumeration value="FLOAT" />
+	  <xs:enumeration value="DATE" />
+	  <xs:enumeration value="DATETIME" />
+	  <xs:enumeration value="BOOLEAN" />
+	</xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="publish_type">
+    <xs:annotation>
+      <xs:documentation>Тип опубликования слоя в ЭА</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OPEN" />
+      <xs:enumeration value="HIDDEN" />
+      <xs:enumeration value="DISABLED" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="num_interval">
+    <xs:annotation>
+	  <xs:documentation>Интервал значений (для чисел и дат)</xs:documentation>
+	</xs:annotation>
+    <xs:sequence>
+	  <xs:element name="min_value" type="xs:float" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Нижняя граница интервала</xs:documentation>
+	    </xs:annotation>
+      </xs:element>
+	  <xs:element name="max_value" type="xs:float" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Верхняя граница интервала</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+	  <xs:element name="interval_type" type="num_interval_type" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Тип интервала</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="coded_value">
+    <xs:annotation>
+	  <xs:documentation>Справочник значений поля</xs:documentation>
+	</xs:annotation>
+    <xs:sequence>
+	  <xs:element name="code" type="xs:integer" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Код</xs:documentation>
+	    </xs:annotation>
+      </xs:element>
+	  <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Значение</xs:documentation>
+	    </xs:annotation>
+      </xs:element>
+	  <xs:element name="is_important" type="xs:boolean" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Признак важности значения поля</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="coded_values">
+	<xs:annotation>
+	  <xs:documentation>Справочник значений поля</xs:documentation>
+	</xs:annotation>
+    <xs:sequence>
+      <xs:element name="coded_value_item" type="coded_value" minOccurs="1" maxOccurs="unbounded">
+	    <xs:annotation>
+		  <xs:documentation>Значение поля</xs:documentation>
+	    </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="widget">
+    <xs:annotation>
+	  <xs:documentation>Виджет - графическое представление элемента информационного окна ЭА</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="widget_type" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Тип виджета</xs:documentation>
+  	    </xs:annotation>
+      </xs:element>
+      <xs:element name="alias" type="xs:string" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Текст виджета</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="visibility" type="xs:boolean" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Видимость виджета</xs:documentation>
+  	    </xs:annotation>
+      </xs:element>
+      <xs:element name="field_id" type="xs:integer" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Идентификатор поля, связанного с виджетом</xs:documentation>
+	    </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="subgroup_widget">
+    <xs:annotation>
+	  <xs:documentation>Подгруппа виджетов - объединение нескольких виджетов в информационном окне ЭА</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="params" type="widget" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Свойства подгруппы виджетов</xs:documentation>
+  	    </xs:annotation>
+      </xs:element>
+      <xs:element name="child_widget" type="widget" minOccurs="0" maxOccurs="unbounded">
+	    <xs:annotation>
+	      <xs:documentation>Набор виджетов, входящих в подгруппу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="group_widget">
+    <xs:annotation>
+	  <xs:documentation>Группа виджетов - объединение нескольких виджетов и подгрупп виджетов в информационном окне ЭА</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="params" type="widget" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Свойства группы виджетов</xs:documentation>
+  	    </xs:annotation>
+      </xs:element>
+      <xs:element name="child_widget" type="widget" minOccurs="0" maxOccurs="unbounded">
+	    <xs:annotation>
+	      <xs:documentation>Отдельные виджеты, входящие в группу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="child_subgroup_widget" type="subgroup_widget" minOccurs="0" maxOccurs="unbounded">
+	    <xs:annotation>
+	      <xs:documentation>Подгруппы виджетов, входящих в группу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ea_infowindow">
+    <xs:annotation>
+	  <xs:documentation>Информационное окно ЭА</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tab" type="group_widget" minOccurs="1" maxOccurs="unbounded">
+	    <xs:annotation>
+	      <xs:documentation>Закладки для информационного окна ЭА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ea_multisearch">
+    <xs:annotation>
+	  <xs:documentation>Окно многокритериального поиска ЭА</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tab" type="group_widget" minOccurs="1" maxOccurs="unbounded">
+	    <xs:annotation>
+	      <xs:documentation>Закладки для окна многокритериального поиска ЭА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="field">
+	<xs:annotation>
+	  <xs:documentation>Описание поля</xs:documentation>
+	</xs:annotation>
+    <xs:sequence>
+	  <xs:element name="field_id" type="xs:integer" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Идентификатор поля</xs:documentation>
+	    </xs:annotation>
+      </xs:element>
+	  <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Название поля</xs:documentation>
+	    </xs:annotation>
+      </xs:element>
+	  <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+	      <xs:documentation>Описание поля</xs:documentation>
+	    </xs:annotation>
+      </xs:element>
+	  <xs:element name="type" type="field_type" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Тип данных поля</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+	  <xs:element name="required" type="xs:boolean" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Обязательное для заполнения/не обязательное для заполнения поле</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+	  <xs:element name="size" type="xs:integer" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Размер</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+	  <xs:element name="pattern" type="xs:string" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Описание шаблона для преобразования строки в заданный тип данных в формате функции scanf</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+	  <xs:element name="ea_visible" type="xs:boolean" minOccurs="1" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Доступно в ЭА/недоступно в ЭА</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+	  <xs:element name="decimal_places" type="xs:integer" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Количество знаков после запятой</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+	  <xs:element name="param_search" type="xs:boolean" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Участвует в параметрическом поиске/не участвует в параметрическом поиске</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+	  <xs:element name="possible_values" type="coded_values" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Список возможных значений поля</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+	  <xs:element name="possible_interval" type="num_interval" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Интервал возможных значений для чисел и датa</xs:documentation>
+	    </xs:annotation>
+	  </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="fields">
+	<xs:annotation>
+	  <xs:documentation>Набор полей</xs:documentation>
+	</xs:annotation>
+    <xs:sequence>
+      <xs:element name="field_item" type="field" minOccurs="1" maxOccurs="unbounded">
+	    <xs:annotation>
+		  <xs:documentation>Описание поля</xs:documentation>
+	    </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="layer_params">
+    <xs:annotation>
+      <xs:documentation>Параметры слоя</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Системное название</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="alias" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Псевдоним</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ea_alias" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Псевдоним для отображения в ЭА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Описание слоя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dep_id" type="xs:integer" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Идентификатор ОИВ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="sign_date" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Дата подписания</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="sign_fio" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>ФИО подписавшего</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="is_signed" type="xs:boolean" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Подписан/не подписан</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ea_publish_type" type="publish_type" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Тип опубликования слоя в ЭА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ea_section_id" type="xs:integer" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Идентификатор раздела каталога ЭА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	  <xs:element name="search_tags" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Тэги для поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	  <xs:element name="id_field_id" type="xs:integer" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Идентификатор поля ID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	  <xs:element name="name_field_id" type="xs:integer" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Идентификатор поля NAME</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	  <xs:element name="label_field_id" type="xs:integer" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Идентификатор поля LABEL</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	  <xs:element name="searchname_field_id" type="xs:integer" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Идентификатор поля SEARCHNAME</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	  <xs:element name="address_field_id" type="xs:integer" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Идентификатор поля ADDRESS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+	</xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="layer">
+    <xs:annotation>
+      <xs:documentation>Описание слоя</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element name="params" type="layer_params" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Параметры слоя</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+		<xs:element name="layer_fields" type="fields" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Набор полей слоя</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+		<xs:element name="layer_ea_infowindow" type="ea_infowindow" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Информационное окно ЭА</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+		<xs:element name="layer_ea_multisearch" type="ea_multisearch" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Окно многокритериального поиска ЭА</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+	  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
