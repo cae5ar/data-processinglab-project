@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer xmlns="http://www.digimap.ru">
+	<params>
+		<name>Apteki_EDS</name>
+		<alias>Аптеки</alias>
+		<ea_alias>Аптеки</ea_alias>
+		<description />
+		<dep_id>6503</dep_id>
+		<sign_date>2013-06-28T20:07:44Z</sign_date>
+		<sign_fio />
+		<is_signed>1</is_signed>
+		<ea_publish_type>OPEN</ea_publish_type>
+		<ea_section_id>211</ea_section_id>
+		<search_tags />
+		<id_field_id>1</id_field_id>
+		<name_field_id>2</name_field_id>
+		<label_field_id>3</label_field_id>
+		<searchname_field_id>2</searchname_field_id>
+		<address_field_id>4</address_field_id>
+	</params>
+	<layer_fields>
+		<field_item>
+			<field_id>1</field_id>
+			<name>UIDNFTN</name>
+			<description>Идентификатор</description>
+			<type>INTEGER</type>
+			<required>true</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<decimal_places>0</decimal_places>
+			<param_search>false</param_search>
+			<possible_interval>
+				<min_value>1</min_value>
+				<max_value>2147483647</max_value>
+				<interval_type>4</interval_type>
+			</possible_interval>
+		</field_item>
+		<field_item>
+			<field_id>25</field_id>
+			<name>K_PUTI_LESTNICA</name>
+			<description>Лестницы на пути движения</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>26</field_id>
+			<name>K_PUTI_PANDUS</name>
+			<description>Наличие пандуса на пути движения</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>27</field_id>
+			<name>K_PUTI_LIFT</name>
+			<description>Наличие лифта</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>51</field_id>
+			<name>O_VHOD</name>
+			<description>Входная группа</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>52</field_id>
+			<name>O_VHOD_NULL</name>
+			<description>Нулевой вход</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>146</field_id>
+			<name>G_USLUGI_VISUAL</name>
+			<description>Визуальные средства информации о предоставлении услуги
+			</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>147</field_id>
+			<name>G_SANUZEL</name>
+			<description>Санитарный узел</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>148</field_id>
+			<name>G_SANUZEL_DVER</name>
+			<description>Ширина двери</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>149</field_id>
+			<name>G_SANUZEL_KABINA</name>
+			<description>Габариты кабины</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>150</field_id>
+			<name>G_SANUZEL_UNITAZ</name>
+			<description>Зона рядом с унитазом</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>151</field_id>
+			<name>G_SANUZEL_RAKOVINA</name>
+			<description>Зона раковины для кресла-коляски</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+		<field_item>
+			<field_id>152</field_id>
+			<name>G_SANUZEL_TAKTIL</name>
+			<description>Тактильное обозначение санузла</description>
+			<type>UNKNOWN</type>
+			<required>false</required>
+			<pattern />
+			<ea_visible>true</ea_visible>
+			<param_search>false</param_search>
+		</field_item>
+	</layer_fields>
+	<layer_ea_infowindow>
+		<tab>
+			<params>
+				<type>TAB</type>
+				<alias>Основная информация</alias>
+				<visibility>true</visibility>
+			</params>
+			<child_widget>
+				<type>TEXT</type>
+				<alias>Адрес объекта</alias>
+				<visibility>true</visibility>
+				<field_id>4</field_id>
+			</child_widget>
+			<child_widget>
+				<type>TEXT</type>
+				<alias>Телефон</alias>
+				<visibility>true</visibility>
+				<field_id>5</field_id>
+			</child_widget>
+			<child_widget>
+				<type>TEXT</type>
+				<alias>Режим работы</alias>
+				<visibility>true</visibility>
+				<field_id>6</field_id>
+			</child_widget>
+			<child_widget>
+				<type>TEXT</type>
+				<alias>Адрес головной организации</alias>
+				<visibility>true</visibility>
+				<field_id>7</field_id>
+			</child_widget>
+			<child_widget>
+				<type>TEXT</type>
+				<alias>Тип объекта</alias>
+				<visibility>true</visibility>
+				<field_id>8</field_id>
+			</child_widget>
+		</tab>
+		<tab>
+			<params>
+				<type>TAB</type>
+				<alias>Дополнительная информация</alias>
+				<visibility>true</visibility>
+			</params>
+		</tab>
+		<tab>
+			<params>
+				<type>TAB</type>
+				<alias>Доступность</alias>
+				<visibility>true</visibility>
+			</params>
+			<child_subgroup_widget>
+				<params>
+					<type>SECTION</type>
+					<alias>Инвалиды-колясочники</alias>
+					<visibility>true</visibility>
+				</params>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Территория объекта</alias>
+					<visibility>true</visibility>
+					<field_id>9</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>машиноместо для инвалидов</alias>
+					<visibility>true</visibility>
+					<field_id>10</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>безбарьерный путь до главного входа</alias>
+					<visibility>true</visibility>
+					<field_id>11</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>информационные указатели</alias>
+					<visibility>true</visibility>
+					<field_id>12</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>13</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильная полоска перед лестницей</alias>
+					<visibility>true</visibility>
+					<field_id>14</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Входная группа</alias>
+					<visibility>true</visibility>
+					<field_id>15</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>нулевой вход</alias>
+					<visibility>true</visibility>
+					<field_id>16</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>пандус с поручнями и его уклон (отношение высоты к длине)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>17</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>платформа подъемная (мобильного лестничного подъемника)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>18</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина входной двери</alias>
+					<visibility>true</visibility>
+					<field_id>19</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>информационные указатели</alias>
+					<visibility>true</visibility>
+					<field_id>20</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имеющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>21</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильная полоса перед входной лестницей</alias>
+					<visibility>true</visibility>
+					<field_id>22</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Пути движения и эвакуации</alias>
+					<visibility>true</visibility>
+					<field_id>23</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина полосы движения</alias>
+					<visibility>true</visibility>
+					<field_id>24</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>лестницы на пути движения</alias>
+					<visibility>true</visibility>
+					<field_id>25</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>наличие пандуса на пути движения</alias>
+					<visibility>true</visibility>
+					<field_id>26</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>наличие лифта</alias>
+					<visibility>true</visibility>
+					<field_id>27</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>платформа подъемная (мобильного лестничного подъемника)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>28</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имеющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>29</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>контрастная маркировка ступеней</alias>
+					<visibility>true</visibility>
+					<field_id>30</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Зона оказания услуги</alias>
+					<visibility>true</visibility>
+					<field_id>31</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>обслуживание через окно/прилавок</alias>
+					<visibility>true</visibility>
+					<field_id>32</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина дверей в кабинеты</alias>
+					<visibility>true</visibility>
+					<field_id>33</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина полосы движения (при обслуживании с перемещением)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>34</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>места для инвалидов-колясочников в зале</alias>
+					<visibility>true</visibility>
+					<field_id>35</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>габариты зоны сидения (глубина)</alias>
+					<visibility>true</visibility>
+					<field_id>36</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильные средства информации</alias>
+					<visibility>true</visibility>
+					<field_id>37</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>визуальные средства информации о предоставлении услуги
+					</alias>
+					<visibility>true</visibility>
+					<field_id>38</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Санитарный узел</alias>
+					<visibility>true</visibility>
+					<field_id>39</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина двери</alias>
+					<visibility>true</visibility>
+					<field_id>40</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>габариты кабины</alias>
+					<visibility>true</visibility>
+					<field_id>41</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>зона рядом с унитазом</alias>
+					<visibility>true</visibility>
+					<field_id>42</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>зона раковины для кресла-коляски</alias>
+					<visibility>true</visibility>
+					<field_id>43</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильное обозначение санузла</alias>
+					<visibility>true</visibility>
+					<field_id>44</field_id>
+				</child_widget>
+			</child_subgroup_widget>
+			<child_subgroup_widget>
+				<params>
+					<type>SECTION</type>
+					<alias>Инвалиды-опорники</alias>
+					<visibility>true</visibility>
+				</params>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Территория объекта</alias>
+					<visibility>true</visibility>
+					<field_id>45</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>машиноместо для инвалидов</alias>
+					<visibility>true</visibility>
+					<field_id>46</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>безбарьерный путь до главного входа</alias>
+					<visibility>true</visibility>
+					<field_id>47</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>информационные указатели</alias>
+					<visibility>true</visibility>
+					<field_id>48</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>49</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильная полоска перед лестницей</alias>
+					<visibility>true</visibility>
+					<field_id>50</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Входная группа</alias>
+					<visibility>true</visibility>
+					<field_id>51</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>нулевой вход</alias>
+					<visibility>true</visibility>
+					<field_id>52</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>пандус с поручнями и его уклон (отношение высоты к длине)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>53</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>платформа подъемная (мобильного лестничного подъемника)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>54</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина входной двери</alias>
+					<visibility>true</visibility>
+					<field_id>55</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>информационные указатели</alias>
+					<visibility>true</visibility>
+					<field_id>56</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имеющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>57</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильная полоса перед входной лестницей</alias>
+					<visibility>true</visibility>
+					<field_id>58</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Пути движения и эвакуации</alias>
+					<visibility>true</visibility>
+					<field_id>59</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина полосы движения</alias>
+					<visibility>true</visibility>
+					<field_id>60</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>лестницы на пути движения</alias>
+					<visibility>true</visibility>
+					<field_id>61</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>наличие пандуса на пути движения</alias>
+					<visibility>true</visibility>
+					<field_id>62</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>наличие лифта</alias>
+					<visibility>true</visibility>
+					<field_id>63</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>платформа подъемная (мобильного лестничного подъемника)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>64</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имеющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>65</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>контрастная маркировка ступеней</alias>
+					<visibility>true</visibility>
+					<field_id>66</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Зона оказания услуги</alias>
+					<visibility>true</visibility>
+					<field_id>67</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>обслуживание через окно/прилавок</alias>
+					<visibility>true</visibility>
+					<field_id>68</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина дверей в кабинеты</alias>
+					<visibility>true</visibility>
+					<field_id>69</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина полосы движения (при обслуживании с перемещением)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>70</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>места для инвалидов-колясочников в зале</alias>
+					<visibility>true</visibility>
+					<field_id>71</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>габариты зоны сидения (глубина)</alias>
+					<visibility>true</visibility>
+					<field_id>72</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильные средства информации</alias>
+					<visibility>true</visibility>
+					<field_id>73</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>визуальные средства информации о предоставлении услуги
+					</alias>
+					<visibility>true</visibility>
+					<field_id>74</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Санитарный узел</alias>
+					<visibility>true</visibility>
+					<field_id>75</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина двери</alias>
+					<visibility>true</visibility>
+					<field_id>76</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>габариты кабины</alias>
+					<visibility>true</visibility>
+					<field_id>77</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>зона рядом с унитазом</alias>
+					<visibility>true</visibility>
+					<field_id>78</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>зона раковины для кресла-коляски</alias>
+					<visibility>true</visibility>
+					<field_id>79</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильное обозначение санузла</alias>
+					<visibility>true</visibility>
+					<field_id>80</field_id>
+				</child_widget>
+			</child_subgroup_widget>
+			<child_subgroup_widget>
+				<params>
+					<type>SECTION</type>
+					<alias>Инвалиды по зрению</alias>
+					<visibility>true</visibility>
+				</params>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Территория объекта</alias>
+					<visibility>true</visibility>
+					<field_id>81</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>машиноместо для инвалидов</alias>
+					<visibility>true</visibility>
+					<field_id>82</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>безбарьерный путь до главного входа</alias>
+					<visibility>true</visibility>
+					<field_id>83</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>информационные указатели</alias>
+					<visibility>true</visibility>
+					<field_id>84</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>85</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильная полоска перед лестницей</alias>
+					<visibility>true</visibility>
+					<field_id>86</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Входная группа</alias>
+					<visibility>true</visibility>
+					<field_id>87</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>нулевой вход</alias>
+					<visibility>true</visibility>
+					<field_id>88</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>пандус с поручнями и его уклон (отношение высоты к длине)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>89</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>платформа подъемная (мобильного лестничного подъемника)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>90</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина входной двери</alias>
+					<visibility>true</visibility>
+					<field_id>91</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>информационные указатели</alias>
+					<visibility>true</visibility>
+					<field_id>92</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имеющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>93</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильная полоса перед входной лестницей</alias>
+					<visibility>true</visibility>
+					<field_id>94</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Пути движения и эвакуации</alias>
+					<visibility>true</visibility>
+					<field_id>95</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина полосы движения</alias>
+					<visibility>true</visibility>
+					<field_id>96</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>лестницы на пути движения</alias>
+					<visibility>true</visibility>
+					<field_id>97</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>наличие пандуса на пути движения</alias>
+					<visibility>true</visibility>
+					<field_id>98</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>наличие лифта</alias>
+					<visibility>true</visibility>
+					<field_id>99</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>платформа подъемная (мобильного лестничного подъемника)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>100</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имеющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>101</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>контрастная маркировка ступеней</alias>
+					<visibility>true</visibility>
+					<field_id>102</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Зона оказания услуги</alias>
+					<visibility>true</visibility>
+					<field_id>103</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>обслуживание через окно/прилавок</alias>
+					<visibility>true</visibility>
+					<field_id>104</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина дверей в кабинеты</alias>
+					<visibility>true</visibility>
+					<field_id>105</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина полосы движения (при обслуживании с перемещением)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>106</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>места для инвалидов-колясочников в зале</alias>
+					<visibility>true</visibility>
+					<field_id>107</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>габариты зоны сидения (глубина)</alias>
+					<visibility>true</visibility>
+					<field_id>108</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильные средства информации</alias>
+					<visibility>true</visibility>
+					<field_id>109</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>визуальные средства информации о предоставлении услуги
+					</alias>
+					<visibility>true</visibility>
+					<field_id>110</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Санитарный узел</alias>
+					<visibility>true</visibility>
+					<field_id>111</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина двери</alias>
+					<visibility>true</visibility>
+					<field_id>112</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>габариты кабины</alias>
+					<visibility>true</visibility>
+					<field_id>113</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>зона рядом с унитазом</alias>
+					<visibility>true</visibility>
+					<field_id>114</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>зона раковины для кресла-коляски</alias>
+					<visibility>true</visibility>
+					<field_id>115</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильное обозначение санузла</alias>
+					<visibility>true</visibility>
+					<field_id>116</field_id>
+				</child_widget>
+			</child_subgroup_widget>
+			<child_subgroup_widget>
+				<params>
+					<type>SECTION</type>
+					<alias>Инвалиды по слуху</alias>
+					<visibility>true</visibility>
+				</params>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Территория объекта</alias>
+					<visibility>true</visibility>
+					<field_id>117</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>машиноместо для инвалидов</alias>
+					<visibility>true</visibility>
+					<field_id>118</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>безбарьерный путь до главного входа</alias>
+					<visibility>true</visibility>
+					<field_id>119</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>информационные указатели</alias>
+					<visibility>true</visibility>
+					<field_id>120</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>121</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильная полоска перед лестницей</alias>
+					<visibility>true</visibility>
+					<field_id>122</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Входная группа</alias>
+					<visibility>true</visibility>
+					<field_id>123</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>нулевой вход</alias>
+					<visibility>true</visibility>
+					<field_id>124</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>пандус с поручнями и его уклон (отношение высоты к длине)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>125</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>платформа подъемная (мобильного лестничного подъемника)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>126</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина входной двери</alias>
+					<visibility>true</visibility>
+					<field_id>127</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>информационные указатели</alias>
+					<visibility>true</visibility>
+					<field_id>128</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имеющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>129</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильная полоса перед входной лестницей</alias>
+					<visibility>true</visibility>
+					<field_id>130</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Пути движения и эвакуации</alias>
+					<visibility>true</visibility>
+					<field_id>131</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина полосы движения</alias>
+					<visibility>true</visibility>
+					<field_id>132</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>лестницы на пути движения</alias>
+					<visibility>true</visibility>
+					<field_id>133</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>наличие пандуса на пути движения</alias>
+					<visibility>true</visibility>
+					<field_id>134</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>наличие лифта</alias>
+					<visibility>true</visibility>
+					<field_id>135</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>платформа подъемная (мобильного лестничного подъемника)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>136</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>поручни на имеющейся лестнице</alias>
+					<visibility>true</visibility>
+					<field_id>137</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>контрастная маркировка ступеней</alias>
+					<visibility>true</visibility>
+					<field_id>138</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Зона оказания услуги</alias>
+					<visibility>true</visibility>
+					<field_id>139</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>обслуживание через окно/прилавок</alias>
+					<visibility>true</visibility>
+					<field_id>140</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина дверей в кабинеты</alias>
+					<visibility>true</visibility>
+					<field_id>141</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина полосы движения (при обслуживании с перемещением)
+					</alias>
+					<visibility>true</visibility>
+					<field_id>142</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>места для инвалидов-колясочников в зале</alias>
+					<visibility>true</visibility>
+					<field_id>143</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>габариты зоны сидения (глубина)</alias>
+					<visibility>true</visibility>
+					<field_id>144</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильные средства информации</alias>
+					<visibility>true</visibility>
+					<field_id>145</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>визуальные средства информации о предоставлении услуги
+					</alias>
+					<visibility>true</visibility>
+					<field_id>146</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>Санитарный узел</alias>
+					<visibility>true</visibility>
+					<field_id>147</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>ширина двери</alias>
+					<visibility>true</visibility>
+					<field_id>148</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>габариты кабины</alias>
+					<visibility>true</visibility>
+					<field_id>149</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>зона рядом с унитазом</alias>
+					<visibility>true</visibility>
+					<field_id>150</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>зона раковины для кресла-коляски</alias>
+					<visibility>true</visibility>
+					<field_id>151</field_id>
+				</child_widget>
+				<child_widget>
+					<type>TEXT</type>
+					<alias>тактильное обозначение санузла</alias>
+					<visibility>true</visibility>
+					<field_id>152</field_id>
+				</child_widget>
+			</child_subgroup_widget>
+		</tab>
+	</layer_ea_infowindow>
+	<layer_ea_multisearch>
+		<tab>
+			<params>
+				<type>MULTISEARCHSECT</type>
+				<alias>Основные параметры</alias>
+				<visibility>true</visibility>
+			</params>
+		</tab>
+	</layer_ea_multisearch>
+</layer>
