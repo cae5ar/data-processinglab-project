@@ -16,8 +16,8 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.pstu.dtl.client.components.CustomDialogBox;
-import com.pstu.dtl.client.components.CustomDialogBox.EAlertType;
+import com.pstu.dtl.client.components.AlertDialogBox;
+import com.pstu.dtl.client.components.AlertDialogBox.EAlertType;
 import com.pstu.dtl.client.mvp.ClientFactory;
 import com.pstu.dtl.client.mvp.CustomActivityMapper;
 import com.pstu.dtl.client.mvp.CustomPlaceHistoryMapper;
@@ -38,7 +38,7 @@ public class Site implements EntryPoint {
     public static void handleError(Throwable caught) {
         System.out.println();
         logger.log(Level.WARNING, caught.getMessage(), caught);
-        CustomDialogBox.showDialogBox(new CustomDialogBox("Ошибка!", caught.getMessage(), EAlertType.ERROR));
+        AlertDialogBox.showDialogBox(new AlertDialogBox("Ошибка!", caught.getMessage(), EAlertType.ERROR));
     }
 
     public static String getServletUrl(String servlet, String name, Long id) {

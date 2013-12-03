@@ -13,12 +13,12 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
- * Bootstrap alert messages. Use @link {@link #showDialogBox(CustomDialogBox)}
+ * Bootstrap alert messages. Use @link {@link #showDialogBox(AlertDialogBox)}
  * to create and show alert messages
  * 
  * @author Kasimov A.D.
  */
-public class CustomDialogBox extends Composite {
+public class AlertDialogBox extends Composite {
 
     private static final int DELAY_BEFORE_SHOW = 100;
     private static final int DELAY_BEFORE_CLOSE = 500;
@@ -47,7 +47,7 @@ public class CustomDialogBox extends Composite {
     Element text = DOM.createSpan();
     String selectedType = "";
 
-    public CustomDialogBox() {
+    public AlertDialogBox() {
         initWidget(mainPanel);
         mainPanel.addStyleName("alert fade");
         closeButton.addStyleName("close");
@@ -61,17 +61,17 @@ public class CustomDialogBox extends Composite {
         mainPanel.getElement().appendChild(text);
     }
 
-    public CustomDialogBox(String boldText) {
+    public AlertDialogBox(String boldText) {
         this();
         setBoldText(boldText);
     }
 
-    public CustomDialogBox(String boldText, String text) {
+    public AlertDialogBox(String boldText, String text) {
         this(boldText);
         setText(text);
     }
 
-    public CustomDialogBox(String boldText, String text, EAlertType type) {
+    public AlertDialogBox(String boldText, String text, EAlertType type) {
         this(boldText, text);
         setType(type);
     }
@@ -97,13 +97,13 @@ public class CustomDialogBox extends Composite {
         Timer t = new Timer() {
             @Override
             public void run() {
-                CustomDialogBox.this.removeFromParent();
+                AlertDialogBox.this.removeFromParent();
             }
         };
         t.schedule(DELAY_BEFORE_CLOSE);
     }
 
-    public static void showDialogBox(final CustomDialogBox popup) {
+    public static void showDialogBox(final AlertDialogBox popup) {
         RootPanel.get().add(popup);
         popup.getElement().getStyle().setPosition(Position.FIXED);
         popup.getElement().getStyle().setBottom(0, Unit.PX);
@@ -119,15 +119,15 @@ public class CustomDialogBox extends Composite {
     }
 
     public static void showDialogBox(String strong) {
-        showDialogBox(new CustomDialogBox(strong, "", EAlertType.SUCCES));
+        showDialogBox(new AlertDialogBox(strong, "", EAlertType.SUCCES));
     }
 
     public static void showDialogBox(String strong, String text) {
-        showDialogBox(new CustomDialogBox(strong, text, EAlertType.SUCCES));
+        showDialogBox(new AlertDialogBox(strong, text, EAlertType.SUCCES));
     }
 
     public static void showDialogBox(String strong, String text, EAlertType type) {
-        showDialogBox(new CustomDialogBox(strong, text, type));
+        showDialogBox(new AlertDialogBox(strong, text, type));
     }
 
     private void show() {

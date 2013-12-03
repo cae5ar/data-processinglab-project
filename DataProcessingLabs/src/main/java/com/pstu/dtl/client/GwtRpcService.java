@@ -17,5 +17,5 @@ public interface GwtRpcService extends RemoteService {
     void deleteSeries(Long seriesId) throws AnyServiceException;
     void deletePeriod(Long periodId) throws AnyServiceException;
     List<PeriodDto> savePeriods(List<PeriodDto> periods) throws AnyServiceException;
-    List<Double> calculateSquareRegression() throws AnyServiceException;
+    Map<String,List<Double>> calculateSquareRegression() throws AnyServiceException;
 }

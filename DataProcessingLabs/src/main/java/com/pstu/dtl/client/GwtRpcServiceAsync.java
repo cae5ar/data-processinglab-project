@@ -17,6 +17,6 @@ public interface GwtRpcServiceAsync {
     void deleteSeries(Long seriesId, AsyncCallback<Void> callback);
     void deletePeriod(Long periodId, AsyncCallback<Void> callback);
     void savePeriods(List<PeriodDto> periods, AsyncCallback<List<PeriodDto>> callback);
-    void calculateSquareRegression(AsyncCallback<List<Double>> callback);
+    void calculateSquareRegression(AsyncCallback<Map<String, List<Double>>> callback);
     
 }

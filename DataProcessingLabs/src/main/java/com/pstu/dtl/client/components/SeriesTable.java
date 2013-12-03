@@ -38,6 +38,7 @@ public class SeriesTable extends Composite {
         void action(ActionType type, List<Long> seriesList);
     }
 
+    private final String pseudoElement = "todelete";
     private FlowPanel panel = new FlowPanel();
     private FlexTable table = new FlexTable();
     private CustomListBox actionListBox = new CustomListBox(null);
@@ -93,7 +94,7 @@ public class SeriesTable extends Composite {
         Element tr = DOM.createTR();
         Element th;
         th = DOM.createTH();
-        th.setInnerHTML("<span title='Корреляция'>   <span>");
+        th.setClassName("remove-cell");
         th.addClassName("text-center");
         tr.appendChild(th);
         columnCount++;
@@ -106,10 +107,12 @@ public class SeriesTable extends Composite {
             columnCount++;
         }
         th = DOM.createTH();
+        th.setClassName("remove-cell");
         th.setInnerHTML("<span class='glyphicon glyphicon-pencil' style='margin: 6px 12px'></span>");
         tr.appendChild(th);
         columnCount++;
         th = DOM.createTH();
+        th.setClassName("remove-cell");
         th.setInnerHTML("<span class='glyphicon glyphicon-minus' style='margin: 6px 12px'></span>");
         tr.appendChild(th);
         thead.appendChild(tr);
@@ -141,7 +144,7 @@ public class SeriesTable extends Composite {
         });
         int column = 0;
         table.setWidget(index, column, selectionBox);
-        table.getCellFormatter().addStyleName(index, column++, "text-center");
+        table.getCellFormatter().addStyleName(index, column++, "text-center remove-cell");
         table.setText(index, column, series.getName());
         table.getCellFormatter().addStyleName(index, column++, "series-cell name");
         // ///////////////////////////////
@@ -164,7 +167,9 @@ public class SeriesTable extends Composite {
             }
         });
         table.setWidget(index, columnCount - 1, editBtn);
+        table.getCellFormatter().addStyleName(index, columnCount-1, "remove-cell");
         table.setWidget(index, columnCount, removeBtn);
+        table.getCellFormatter().addStyleName(index, columnCount, "remove-cell");
         index++;
     }
 
@@ -198,5 +203,13 @@ public class SeriesTable extends Composite {
 
     public void setActionHandler(IActionHandler handler) {
         this.actionHandler = handler;
+    }
+    
+    public FlowPanel getSimpleCloneTable(Map<String,List<Double>> columns){
+        FlowPanel panel = new FlowPanel();
+        Element clone = (Element) table.getElement().cloneNode(true);
+        clone.addClassName("cleared-table");
+        panel.getElement().appendChild(clone);
+        return panel;
     }
 }
