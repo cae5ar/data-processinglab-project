@@ -8,17 +8,18 @@ import java.util.Map;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.NumberFormat;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.pstu.dtl.client.SimpleAsyncCallback;
 import com.pstu.dtl.client.Site;
+import com.pstu.dtl.client.components.AlertDialogBox;
+import com.pstu.dtl.client.components.AlertDialogBox.EAlertType;
 import com.pstu.dtl.client.components.Btn;
 import com.pstu.dtl.client.components.Btn.EButtonStyle;
 import com.pstu.dtl.client.components.ColumnChartPresenter;
-import com.pstu.dtl.client.components.CustomDialogBox;
-import com.pstu.dtl.client.components.CustomDialogBox.EAlertType;
 import com.pstu.dtl.client.components.LineChartPresenter;
 import com.pstu.dtl.client.components.PeriodEditPopup;
 import com.pstu.dtl.client.components.PeriodEditPopup.PeriodSaveHandler;
@@ -93,17 +94,31 @@ public class SeriesEditPageView implements ISeriesEditPageView {
                             refreshCorellation(getSeriesById(seriesList.get(0)), getSeriesById(seriesList.get(1)));
                         }
                         else {
-                            CustomDialogBox.showDialogBox("Внимание", "Для подсчета корреляции выберите 2 ряда ", EAlertType.WARNING);
+                            AlertDialogBox.showDialogBox("Внимание", "Для подсчета корреляции выберите 2 ряда ", EAlertType.WARNING);
                             correlationLabel.addStyleName("hide");
                         }
                         break;
                     case REGRESSION:
-                        Site.service.calculateSquareRegression(new SimpleAsyncCallback<List<Double>>() {
-                            @Override
-                            public void onSuccess(List<Double> result) {
-                                CustomDialogBox.showDialogBox("Ништяк");
-                            }
-                        });
+                        AlertDialogBox.showDialogBox("Ништяк");
+                        DialogBox cdb = new DialogBox();
+                        cdb.setGlassEnabled(true);
+                        cdb.setAnimationEnabled(true);
+                        cdb.setText("Ghbth ujdyj dbl);tnf");
+                        cdb.setWidget(table.getSimpleCloneTable(null));
+                        cdb.center();
+                        cdb.show();
+//                        Site.service.calculateSquareRegression(new SimpleAsyncCallback<Map<String, List<Double>>>() {
+//                            @Override
+//                            public void onSuccess(Map<String, List<Double>> result) {
+//                                AlertDialogBox.showDialogBox("Ништяк");
+//                                DialogBox cdb = new DialogBox();
+//                                cdb.setGlassEnabled(true);
+//                                cdb.setAnimationEnabled(true);
+//                                cdb.setWidget(table.getSimpleCloneTable(result));
+//                                cdb.center();
+//                                cdb.show();
+//                            }
+//                        });
                         break;
                     case CLUSTERING:
                         break;
@@ -154,7 +169,7 @@ public class SeriesEditPageView implements ISeriesEditPageView {
                 Site.service.saveSeries(bean, new SimpleAsyncCallback<Long>() {
                     public void onSuccess(Long result) {
                         sender.hide();
-                        CustomDialogBox.showDialogBox("OK!", "Ряд успешно сохранен", EAlertType.SUCCES);
+                        AlertDialogBox.showDialogBox("OK!", "Ряд успешно сохранен", EAlertType.SUCCES);
                         reset();
                     }
                 });
@@ -168,7 +183,7 @@ public class SeriesEditPageView implements ISeriesEditPageView {
             public void save(List<PeriodDto> list, final PeriodEditPopup sender) {
                 Site.service.savePeriods(list, new SimpleAsyncCallback<List<PeriodDto>>() {
                     public void onSuccess(List<PeriodDto> result) {
-                        CustomDialogBox.showDialogBox("OK!", "Все изменения внесены", EAlertType.SUCCES);
+                        AlertDialogBox.showDialogBox("OK!", "Все изменения внесены", EAlertType.SUCCES);
                         sender.hide();
                         setPeriods(result);
                         reset();
@@ -216,7 +231,7 @@ public class SeriesEditPageView implements ISeriesEditPageView {
         Site.service.deleteSeries(seriesId, new SimpleAsyncCallback<Void>() {
             public void onSuccess(Void result) {
                 reset();
-                CustomDialogBox.showDialogBox("OK!", "Ряд успешно удален", EAlertType.SUCCES);
+                AlertDialogBox.showDialogBox("OK!", "Ряд успешно удален", EAlertType.SUCCES);
             }
         });
     }

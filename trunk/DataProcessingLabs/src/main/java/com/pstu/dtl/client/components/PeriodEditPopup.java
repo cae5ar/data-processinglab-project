@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.pstu.dtl.client.SimpleAsyncCallback;
 import com.pstu.dtl.client.Site;
 import com.pstu.dtl.client.components.Btn.EButtonStyle;
-import com.pstu.dtl.client.components.CustomDialogBox.EAlertType;
+import com.pstu.dtl.client.components.AlertDialogBox.EAlertType;
 import com.pstu.dtl.shared.dto.PeriodDto;
 
 public class PeriodEditPopup extends CustomPopup {
@@ -107,7 +107,7 @@ public class PeriodEditPopup extends CustomPopup {
                         public void onSuccess(Void result) {
                             periodsMap.remove(text);
                             itemPanel.removeFromParent();
-                            CustomDialogBox.showDialogBox("OK!", "Период успешно удален", EAlertType.SUCCES);
+                            AlertDialogBox.showDialogBox("OK!", "Период успешно удален", EAlertType.SUCCES);
                         }
                     });
                 }

@@ -1,7 +1,9 @@
 package com.pstu.dtl.server.math;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.LUDecomposition;
@@ -10,7 +12,7 @@ import com.pstu.dtl.shared.dto.SeriesDto;
 
 public class OLS {
 
-    public List<Double> calculate(List<SeriesDto> series, List<Long> periodsList) {
+    public Map<String, List<Double>> calculate(List<SeriesDto> series, List<Long> periodsList) {
         ArrayList<Long> temp = new ArrayList<Long>();
         temp.add(periodsList.get(0));
         // Y
@@ -35,7 +37,10 @@ public class OLS {
         Array2DRowRealMatrix yPrognoz = xMatrix.multiply(alpha);
         List<Double> yPrognozList = new ArrayList<Double>();
         toDoubleList(yPrognozList, yPrognoz, false, 0);
-        return null;
+        Map<String,List<Double>> map = new HashMap<String, List<Double>>();
+        map.put("Y", yPrognozList);
+        map.put("ALPHA", alphaList);
+        return map;
     }
 
     private void toDoubleList(List<Double> list, Array2DRowRealMatrix array, boolean isRow, int rowOrColumnIndex) {

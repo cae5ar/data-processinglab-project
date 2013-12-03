@@ -12,7 +12,7 @@ import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.pstu.dtl.client.components.Btn.EButtonStyle;
-import com.pstu.dtl.client.components.CustomDialogBox.EAlertType;
+import com.pstu.dtl.client.components.AlertDialogBox.EAlertType;
 import com.pstu.dtl.shared.dto.SeriesDto;
 
 public class SeriesEditPopup extends CustomPopup {
@@ -73,7 +73,7 @@ public class SeriesEditPopup extends CustomPopup {
             handler.click(SeriesEditPopup.this, item);
         }
         else {
-            CustomDialogBox.showDialogBox(new CustomDialogBox("Внимание", "Все поля должны быть верно заполнены", EAlertType.WARNING));
+            AlertDialogBox.showDialogBox(new AlertDialogBox("Внимание", "Все поля должны быть верно заполнены", EAlertType.WARNING));
         }
     }
 

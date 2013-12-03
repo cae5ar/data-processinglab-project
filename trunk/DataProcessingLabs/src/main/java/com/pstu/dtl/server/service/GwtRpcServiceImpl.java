@@ -74,7 +74,7 @@ public class GwtRpcServiceImpl extends RemoteServiceServlet implements GwtRpcSer
         return periodDao.savePeriodList(periods);
     }
 
-    public List<Double> calculateSquareRegression() throws AnyServiceException{
+    public Map<String,List<Double>> calculateSquareRegression() throws AnyServiceException{
        return new OLS().calculate(getAllSeries(),periodDao.getPeriodIdList());
     }
 }
