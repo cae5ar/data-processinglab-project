@@ -1,51 +1,88 @@
-package com.pstu.dtl.client.mvp.view;
+package com.pstu.dtl.client.components;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.pstu.dtl.client.components.Btn;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.ListBox;
 import com.pstu.dtl.client.components.Btn.EButtonStyle;
 import com.pstu.dtl.shared.dto.SeriesDto;
 
 public class SeriesTable extends Composite {
 
     public enum ActionType {
+        LINEAR_DIAGRAM,
+        COLUMN_DIAGRAM,
+        CORRELATION,
+        REGRESSION,
+        CLUSTERING,
         EDIT,
         REMOVE;
     }
 
     public interface IActionHandler {
         void action(ActionType type, Long seriesId);
+
+        void action(ActionType type, List<Long> seriesList);
     }
 
-    public interface ICheckHandler {
-        void action(Long seriesId, boolean isChecked, CheckBox sender);
-    }
-
-    public interface IDrawHandler {
-        void action(Long seriesId, boolean isChecked, CheckBox sender, boolean isLineChart);
-    }
-
+    private FlowPanel panel = new FlowPanel();
     private FlexTable table = new FlexTable();
+    private CustomListBox actionListBox = new CustomListBox(null);
+    private Btn actionBtn = new Btn("Выполнить", EButtonStyle.INFO);
     private int index = 0;
     private int columnCount = 0;
     private Map<Long, String> periods = null;
+    private List<Long> selectedSeries = new ArrayList<Long>();
     private IActionHandler actionHandler;
-    private ICheckHandler checkHandler;
-    protected IDrawHandler drawHandler;
 
     public SeriesTable(Map<Long, String> periods) {
-        initWidget(table);
+        initWidget(panel);
+        panel.add(table);
         table.addStyleName("table table-striped");
         this.periods = periods;
         createThead(periods);
+        actionListBox.addStyleName("action-list-box");
+        actionListBox.addValue("Построить линейные диаграммы", ActionType.LINEAR_DIAGRAM.name());
+        actionListBox.addValue("Построить столбчатые диаграммы", ActionType.COLUMN_DIAGRAM.name());
+        actionListBox.addValue("Посчитать регрессию МНК", ActionType.REGRESSION.name());
+        actionListBox.addValue("Посчитать корреляцию", ActionType.CORRELATION.name());
+        actionListBox.addValue("Выполнить кластеризацию", ActionType.CLUSTERING.name());
+        Grid actionPanel = new Grid(1, 2);
+        actionBtn.getElement().getStyle().setMarginBottom(8, Unit.PX);
+        actionPanel.addStyleName("action-panel");
+        panel.add(actionPanel);
+        actionPanel.setWidget(0, 0, actionListBox);
+        actionPanel.setWidget(0, 1, actionBtn);
+        actionBtn.setEnabled(false);
+        actionBtn.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                ListBox nativeListBox = actionListBox.getNativeListBox();
+                String value = nativeListBox.getValue(nativeListBox.getSelectedIndex());
+                if (value != null && !value.isEmpty()) {
+                    ActionType type = ActionType.valueOf(value);
+                    actionHandler.action(type, selectedSeries);
+                }
+            }
+        });
+        actionListBox.getNativeListBox().addChangeHandler(new ChangeHandler() {
+            public void onChange(ChangeEvent event) {
+                checkStatus();
+            }
+        });
     }
 
     /**
@@ -56,17 +93,7 @@ public class SeriesTable extends Composite {
         Element tr = DOM.createTR();
         Element th;
         th = DOM.createTH();
-        th.setInnerHTML("<span title='Корреляция'>К-Я<span>");
-        th.addClassName("text-center");
-        tr.appendChild(th);
-        columnCount++;
-        th = DOM.createTH();
-        th.setInnerHTML("<span title='Линейная диаграмма'>ЛД<span>");
-        th.addClassName("text-center");
-        tr.appendChild(th);
-        columnCount++;
-        th = DOM.createTH();
-        th.setInnerHTML("<span title='Столбчатая диаграмма'>СД<span>");
+        th.setInnerHTML("<span title='Корреляция'>   <span>");
         th.addClassName("text-center");
         tr.appendChild(th);
         columnCount++;
@@ -85,7 +112,6 @@ public class SeriesTable extends Composite {
         th = DOM.createTH();
         th.setInnerHTML("<span class='glyphicon glyphicon-minus' style='margin: 6px 12px'></span>");
         tr.appendChild(th);
-        columnCount++;
         thead.appendChild(tr);
         Element tbody = table.getElement().getElementsByTagName("tbody").getItem(0);
         tbody.removeFromParent();
@@ -101,43 +127,25 @@ public class SeriesTable extends Composite {
     }
 
     public void additem(final SeriesDto series) {
-        final CheckBox correlationCheckBox = new CheckBox();
-        correlationCheckBox.addClickHandler(new ClickHandler() {
+        final CheckBox selectionBox = new CheckBox();
+        selectionBox.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if (checkHandler != null) {
-                    checkHandler.action(series.getId(), correlationCheckBox.getValue(), correlationCheckBox);
+                if (selectionBox.getValue()) {
+                    selectedSeries.add(series.getId());
                 }
+                else {
+                    selectedSeries.remove(series.getId());
+                }
+                checkStatus();
             }
         });
-        table.setWidget(index, 0, correlationCheckBox);
-        table.getCellFormatter().addStyleName(index, 0, "text-center");
-
-        final CheckBox lineChartCheckBox = new CheckBox();
-        lineChartCheckBox.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                if (drawHandler != null) {
-                    drawHandler.action(series.getId(), lineChartCheckBox.getValue(), correlationCheckBox, true);
-                }
-            }
-        });
-        table.setWidget(index, 1, lineChartCheckBox);
-        table.getCellFormatter().addStyleName(index, 1, "text-center");
-
-        final CheckBox columnChartCheckBox = new CheckBox();
-        columnChartCheckBox.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                if (drawHandler != null) {
-                    drawHandler.action(series.getId(), columnChartCheckBox.getValue(), correlationCheckBox, false);
-                }
-            }
-        });
-        table.setWidget(index, 2, columnChartCheckBox);
-        table.getCellFormatter().addStyleName(index, 2, "text-center");
-
-        table.setText(index, 3, series.getName());
-        table.getCellFormatter().addStyleName(index, 3, "series-cell name");
+        int column = 0;
+        table.setWidget(index, column, selectionBox);
+        table.getCellFormatter().addStyleName(index, column++, "text-center");
+        table.setText(index, column, series.getName());
+        table.getCellFormatter().addStyleName(index, column++, "series-cell name");
         // ///////////////////////////////
-        insertValues(series.getValues());
+        insertValues(series.getValues(), column);
         // ///////////////////////////////
         Btn editBtn = new Btn("<span class='glyphicon glyphicon-pencil'></span>", EButtonStyle.LINK);
         Btn removeBtn = new Btn("<span class='glyphicon glyphicon-minus'></span>", EButtonStyle.LINK);
@@ -155,13 +163,22 @@ public class SeriesTable extends Composite {
                 }
             }
         });
-        table.setWidget(index, columnCount - 2, editBtn);
-        table.setWidget(index, columnCount - 1, removeBtn);
+        table.setWidget(index, columnCount - 1, editBtn);
+        table.setWidget(index, columnCount, removeBtn);
         index++;
     }
 
-    private void insertValues(Map<Long, Double> values) {
-        int columnIndex = 4;
+    protected void checkStatus() {
+        ListBox nativeListBox = actionListBox.getNativeListBox();
+        if (selectedSeries.size() > 0 || nativeListBox.getValue(nativeListBox.getSelectedIndex()).equals("REGRESSION")) {
+            actionBtn.setEnabled(true);
+        }
+        else {
+            actionBtn.setEnabled(false);
+        }
+    }
+
+    private void insertValues(Map<Long, Double> values, int columnIndex) {
         for (Long id : periods.keySet()) {
             table.setText(index, columnIndex, values.get(id) != null ? values.get(id).toString().replace('.', ',') : "null");
             table.getCellFormatter().addStyleName(index, columnIndex, "series-cell value");
@@ -175,23 +192,11 @@ public class SeriesTable extends Composite {
         }
     }
 
-    public void removeRow(SeriesDto series) {
-
-    }
-
     public void clear() {
         table.removeAllRows();
     }
 
     public void setActionHandler(IActionHandler handler) {
         this.actionHandler = handler;
-    }
-
-    public void setCheckHandler(ICheckHandler handler) {
-        this.checkHandler = handler;
-    }
-
-    public void setDrawHandler(IDrawHandler drawHandler) {
-        this.drawHandler = drawHandler;
     }
 }

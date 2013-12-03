@@ -119,11 +119,11 @@ public class CustomDialogBox extends Composite {
     }
 
     public static void showDialogBox(String strong) {
-        showDialogBox(new CustomDialogBox(strong));
+        showDialogBox(new CustomDialogBox(strong, "", EAlertType.SUCCES));
     }
 
     public static void showDialogBox(String strong, String text) {
-        showDialogBox(new CustomDialogBox(strong, text));
+        showDialogBox(new CustomDialogBox(strong, text, EAlertType.SUCCES));
     }
 
     public static void showDialogBox(String strong, String text, EAlertType type) {

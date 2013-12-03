@@ -67,6 +67,14 @@ public abstract class AbstractChartPresenter extends Composite {
             chart.removeSeries(seriesMap.get(id));
     }
 
+    public void drawChart(Long id) {
+        drawChart(id, true);
+    }
+
+    public void removeAllSeries() {
+        chart.removeAllSeries();
+    }
+
     public void setPeriods(Map<Long, String> periods) {
         this.periods = periods;
         String[] stringArr = new String[periods.size()];

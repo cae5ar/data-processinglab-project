@@ -13,25 +13,49 @@ public class OLS {
     public List<Double> calculate(List<SeriesDto> series, List<Long> periodsList) {
         ArrayList<Long> temp = new ArrayList<Long>();
         temp.add(periodsList.get(0));
-        //Y
+        // Y
         Array2DRowRealMatrix yMatrix = convertToRealMatrix(series, temp, false);
         temp.clear();
         temp.addAll(periodsList);
-        //X
+        // X
         Array2DRowRealMatrix xMatrix = convertToRealMatrix(series, temp, true);
-        //X'
+        // X'
         Array2DRowRealMatrix xTransposed = (Array2DRowRealMatrix) xMatrix.transpose();
-        //(X'*X)
+        // (X'*X)
         Array2DRowRealMatrix xToXTransposed = xTransposed.multiply(xMatrix);
-        //(X'*X)^-1
-        Array2DRowRealMatrix inverse = (Array2DRowRealMatrix)new LUDecomposition(xToXTransposed).getSolver().getInverse();
-        //((X'*X)^-1) * X'
+        // (X'*X)^-1
+        Array2DRowRealMatrix inverse = (Array2DRowRealMatrix) new LUDecomposition(xToXTransposed).getSolver().getInverse();
+        // ((X'*X)^-1) * X'
         Array2DRowRealMatrix inverseToXTransposed = inverse.multiply(xTransposed);
-        //((X'*X)^-1) * X' * Y
+        // ((X'*X)^-1) * X' * Y
         Array2DRowRealMatrix alpha = inverseToXTransposed.multiply(yMatrix);
-        //Y'
+        List<Double> alphaList = new ArrayList<Double>();
+        toDoubleList(alphaList, alpha, false, 0);
+        // Y'
         Array2DRowRealMatrix yPrognoz = xMatrix.multiply(alpha);
+        List<Double> yPrognozList = new ArrayList<Double>();
+        toDoubleList(yPrognozList, yPrognoz, false, 0);
         return null;
+    }
+
+    private void toDoubleList(List<Double> list, Array2DRowRealMatrix array, boolean isRow, int rowOrColumnIndex) {
+        int length = 0;
+        if (isRow) {
+            length = array.getColumnDimension();
+        }
+        else {
+            length = array.getRowDimension();
+        }
+        if (isRow) {
+            for (int j = 0; j < length; j++) {
+                list.add(array.getData()[rowOrColumnIndex][j]);
+            }
+        }
+        else {
+            for (int i = 0; i < length; i++) {
+                list.add(array.getData()[i][rowOrColumnIndex]);
+            }
+        }
     }
 
     public OLS() {}
