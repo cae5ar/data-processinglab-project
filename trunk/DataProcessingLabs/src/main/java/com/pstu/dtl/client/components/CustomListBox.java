@@ -19,7 +19,7 @@ public class CustomListBox extends AbstractSimpleInput {
         return lbox.getItemText(lbox.getSelectedIndex());
     }
 
-    private void addValues(List<String> values) {
+    public void addValues(List<String> values) {
         addValue("");
         if (values != null) {
             for (String str : values) {
@@ -28,8 +28,12 @@ public class CustomListBox extends AbstractSimpleInput {
         }
     }
 
-    private void addValue(String str) {
+    public void addValue(String str) {
         lbox.addItem(str);
+    }
+
+    public void addValue(String str, String value) {
+        lbox.addItem(str, value);
     }
 
     public void setInputValue(String strValue) {
@@ -45,8 +49,12 @@ public class CustomListBox extends AbstractSimpleInput {
         lbox.setFocus(true);
     }
 
-    @Override
     public void addInputStyleName(String style) {
         lbox.addStyleName(style);
     }
+    
+    public ListBox getNativeListBox() {
+        return lbox;
+    }
+
 }
