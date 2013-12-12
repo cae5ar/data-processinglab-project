@@ -20,7 +20,7 @@ public class CustomListBox extends AbstractSimpleInput {
     }
 
     public void addValues(List<String> values) {
-        addValue("");
+//        addValue("");
         if (values != null) {
             for (String str : values) {
                 addValue(str);

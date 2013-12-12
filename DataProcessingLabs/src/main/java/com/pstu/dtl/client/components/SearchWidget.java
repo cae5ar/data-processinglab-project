@@ -1,4 +1,4 @@
-package com.pstu.dtl.client.mvp;
+package com.pstu.dtl.client.components;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
@@ -8,7 +8,6 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
-import com.pstu.dtl.client.components.Btn;
 import com.pstu.dtl.client.components.Btn.EButtonStyle;
 
 public class SearchWidget implements IsWidget {

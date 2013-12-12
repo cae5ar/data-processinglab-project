@@ -84,11 +84,11 @@
 	border: 1px solid #AFAFAF;
 	border-radius: 5px 5px 5px 5px;
 	margin-bottom: 10px;
-	min-height: 500px;
+	min-height: 410px;
 }
 
 .chart-presenter>.block {
-	min-height: 500px;
+	min-height: 410px;
 	padding-top: 10px;
 }
 
@@ -96,17 +96,17 @@
 	border-right: 1px solid #AFAFAF;
 }
 
-.right.block {
-	
-}
-
 .gwt-CheckBox {
-	display: block;
 	padding: 5px 0;
+	margin-left: 5px;
 }
 
 .gwt-CheckBox label {
 	margin-left: 5px;
+}
+
+.gwt-CheckBox.need-to-margin-botom input{
+    margin-bottom: 5px;
 }
 
 .float-right {
@@ -124,117 +124,48 @@
 	margin: 0px 30px 0px 15px;
 }
 
-.table.table-striped {
+.table {
 	margin-bottom: 0px;
 }
 
-.cleared-table td.remove-cell,.cleared-table th.remove-cell
-	{
+.cleared-table td.remove-cell,.cleared-table th.remove-cell {
 	display: none;
 }
 
-.gwt-DialogBox .Caption {
-	background: #F1F1F1;
-	padding: 4px 8px 4px 4px;
-	cursor: default;
-	font-family: Arial Unicode MS, Arial, sans-serif;
-	font-weight: bold;
-	border-bottom: 1px solid #bbbbbb;
-	border-top: 1px solid #D2D2D2;
+.series-cell.value.new {
+	color: #88d;
 }
 
-.gwt-DialogBox .dialogContent {
-	
+.series-cell.value.alpha {
+	color: #b93;
 }
 
-.gwt-DialogBox .dialogMiddleCenter {
-	padding: 3px;
-	background: white;
+.cleared-table .selected-row {
+	background-color: cornsilk;
 }
 
-.gwt-DialogBox .dialogBottomCenter {
-	background: url(../img/hborder.png) repeat-x 0px -2945px;
-	-background: url(../img/hborder_ie6.png) repeat-x 0px -2144px;
+.form-horizontal.horizontal-input .form-control {
+	width: 200px;
+	display: initial;
 }
 
-.gwt-DialogBox .dialogMiddleLeft {
-	background: url(../img/vborder.png) repeat-y -31px 0px;
+.form-horizontal.horizontal-input .form-group {
+	margin: 0px;
 }
 
-.gwt-DialogBox .dialogMiddleRight {
-	background: url(../img/vborder.png) repeat-y -32px 0px;
-	-background: url(../img/vborder_ie6.png) repeat-y -32px 0px;
+.form-horizontal.horizontal-input div {
+	display: inline-block;
 }
 
-.gwt-DialogBox .dialogTopLeftInner {
-	width: 10px;
-	height: 8px;
-	zoom: 1;
+.form-horizontal.horizontal-input {
+	display: inline;
 }
 
-.gwt-DialogBox .dialogTopRightInner {
-	width: 12px;
-	zoom: 1;
+.cluster-presenter {
+  min-height: 600px;
+  padding:10px;
+  border: 1px solid #afafaf;
+  border-radius:10px;
+  margin-bottom:15px;
 }
 
-.gwt-DialogBox .dialogBottomLeftInner {
-	width: 10px;
-	height: 12px;
-	zoom: 1;
-}
-
-.gwt-DialogBox .dialogBottomRightInner {
-	width: 12px;
-	height: 12px;
-	zoom: 1;
-}
-
-.gwt-DialogBox .dialogTopLeft {
-	background: url(../img/circles.png) no-repeat -20px 0px;
-	-background: url(../img/circles_ie6.png) no-repeat -20px 0px;
-}
-
-.gwt-DialogBox .dialogTopRight {
-	background: url(../img/circles.png) no-repeat -28px 0px;
-	-background: url(../img/circles_ie6.png) no-repeat -28px 0px;
-}
-
-.gwt-DialogBox .dialogBottomLeft {
-	background: url(../img/circles.png) no-repeat 0px -36px;
-	-background: url(../img/circles_ie6.png) no-repeat 0px -36px;
-}
-
-.gwt-DialogBox .dialogBottomRight {
-	background: url(../img/circles.png) no-repeat -8px -36px;
-	-background: url(../img/circles_ie6.png) no-repeat -8px -36px;
-}
-
-html>body .gwt-DialogBox {
-	
-}
-
-* html .gwt-DialogBox .dialogTopLeftInner {
-	width: 10px;
-	overflow: hidden;
-}
-
-* html .gwt-DialogBox .dialogTopRightInner {
-	width: 12px;
-	overflow: hidden;
-}
-
-* html .gwt-DialogBox .dialogBottomLeftInner {
-	width: 10px;
-	height: 12px;
-	overflow: hidden;
-}
-
-* html .gwt-DialogBox .dialogBottomRightInner {
-	width: 12px;
-	height: 12px;
-	overflow: hidden;
-}
-
-.cw-DialogBox {
-	
-}

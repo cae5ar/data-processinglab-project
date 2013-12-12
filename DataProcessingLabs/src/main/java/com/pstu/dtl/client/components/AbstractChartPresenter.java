@@ -39,7 +39,7 @@ public abstract class AbstractChartPresenter extends Composite {
 
     public void reset() {
         seriesMap.clear();
-        chart.removeAllSeries();
+        removeAllSeries();
     }
 
     public void addSeriesItem(List<SeriesDto> result) {

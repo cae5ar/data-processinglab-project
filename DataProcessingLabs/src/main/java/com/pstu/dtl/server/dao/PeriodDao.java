@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
 import com.pstu.dtl.server.domain.Period;
 import com.pstu.dtl.shared.dto.PeriodDto;
 import com.pstu.dtl.shared.exception.AnyServiceException;
@@ -22,7 +25,7 @@ public class PeriodDao extends JpaDao<Period> {
         Query q = em.createQuery("SELECT p FROM " + getEntityClass().getName() + " p");
         return q.getResultList();
     }
-    
+
     @SuppressWarnings("unchecked")
     public List<Long> getPeriodIdList() {
         Query q = em.createQuery("SELECT p.id FROM " + getEntityClass().getName() + " p");
@@ -48,6 +51,14 @@ public class PeriodDao extends JpaDao<Period> {
             dto.setId(save.getId());
         }
         return periods;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Period> getPeriodsByList(List<Long> idList) {
+        Criteria criteria = getHibernateSession().createCriteria(getEntityClass());
+        criteria.add(Restrictions.in("id", idList));
+        List<Period> list = criteria.list();
+        return list;
     }
 
 }

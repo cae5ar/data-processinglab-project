@@ -15,7 +15,9 @@ import com.pstu.dtl.server.dao.PeriodDao;
 import com.pstu.dtl.server.dao.SeriesDao;
 import com.pstu.dtl.server.domain.Period;
 import com.pstu.dtl.server.domain.Series;
+import com.pstu.dtl.server.math.Clusterizator;
 import com.pstu.dtl.server.math.OLS;
+import com.pstu.dtl.shared.dto.Cluster;
 import com.pstu.dtl.shared.dto.PeriodDto;
 import com.pstu.dtl.shared.dto.SeriesDto;
 import com.pstu.dtl.shared.exception.AnyServiceException;
@@ -74,7 +76,30 @@ public class GwtRpcServiceImpl extends RemoteServiceServlet implements GwtRpcSer
         return periodDao.savePeriodList(periods);
     }
 
-    public Map<String,List<Double>> calculateSquareRegression() throws AnyServiceException{
-       return new OLS().calculate(getAllSeries(),periodDao.getPeriodIdList());
+    public Map<String, List<Double>> calculateSquareRegression(List<Long> idList) throws AnyServiceException {
+        return new OLS().calculate(getSeriesByList(idList), periodDao.getPeriodIdList(), getAllSeries());
+    }
+
+    public List<SeriesDto> getSeriesByList(List<Long> idList) {
+        List<SeriesDto> res = new ArrayList<SeriesDto>();
+        List<Series> list = seriesDao.getSeriesByList(idList);
+        for (Series layer : list) {
+            res.add(layer.toDto());
+        }
+        return res;
+    }
+
+    public List<PeriodDto> getPeriodsByList(List<Long> idList) {
+        List<PeriodDto> res = new ArrayList<PeriodDto>();
+        List<Period> list = periodDao.getPeriodsByList(idList);
+        for (Period p : list) {
+            res.add(p.toDto());
+        }
+        return res;
+    }
+
+    public List<Cluster> doClustering(List<Long> seriesList, List<Long> periodList, Integer clusterCount)
+            throws AnyServiceException {
+        return new Clusterizator().doKMeansClustering(getSeriesByList(seriesList), periodList, clusterCount);
     }
 }

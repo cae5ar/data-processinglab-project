@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import javax.persistence.Query;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -49,6 +50,14 @@ public class SeriesDao extends JpaDao<Series> {
     @SuppressWarnings("unchecked")
     public List<Series> getAllSeries() {
         Criteria criteria = getHibernateSession().createCriteria(getEntityClass());
+        List<Series> list = criteria.list();
+        return list;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Series> getSeriesByList(List<Long> idList) {
+        Criteria criteria = getHibernateSession().createCriteria(getEntityClass());
+        criteria.add(Restrictions.in("id", idList));
         List<Series> list = criteria.list();
         return list;
     }

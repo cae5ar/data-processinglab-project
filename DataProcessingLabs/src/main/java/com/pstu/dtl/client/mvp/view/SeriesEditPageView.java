@@ -8,7 +8,6 @@ import java.util.Map;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.NumberFormat;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -19,6 +18,8 @@ import com.pstu.dtl.client.components.AlertDialogBox;
 import com.pstu.dtl.client.components.AlertDialogBox.EAlertType;
 import com.pstu.dtl.client.components.Btn;
 import com.pstu.dtl.client.components.Btn.EButtonStyle;
+import com.pstu.dtl.client.components.Calculator;
+import com.pstu.dtl.client.components.ClusterPresenter;
 import com.pstu.dtl.client.components.ColumnChartPresenter;
 import com.pstu.dtl.client.components.LineChartPresenter;
 import com.pstu.dtl.client.components.PeriodEditPopup;
@@ -29,6 +30,7 @@ import com.pstu.dtl.client.components.SeriesTable;
 import com.pstu.dtl.client.components.SeriesTable.ActionType;
 import com.pstu.dtl.client.components.SeriesTable.IActionHandler;
 import com.pstu.dtl.client.mvp.iview.ISeriesEditPageView;
+import com.pstu.dtl.shared.dto.Cluster;
 import com.pstu.dtl.shared.dto.PeriodDto;
 import com.pstu.dtl.shared.dto.SeriesDto;
 
@@ -43,6 +45,7 @@ public class SeriesEditPageView implements ISeriesEditPageView {
     private ColumnChartPresenter ccp;
     private LineChartPresenter lcp;
     private Label correlationLabel = new Label();
+    private ClusterPresenter clusterPresenter;
 
     public Widget asWidget() {
         return panel;
@@ -75,7 +78,7 @@ public class SeriesEditPageView implements ISeriesEditPageView {
             }
 
             @Override
-            public void action(ActionType type, List<Long> seriesList) {
+            public void action(ActionType type, List<Long> seriesList, List<Long> periodList, String clusterCount) {
                 switch (type) {
                     case LINEAR_DIAGRAM:
                         lcp.removeAllSeries();
@@ -99,28 +102,55 @@ public class SeriesEditPageView implements ISeriesEditPageView {
                         }
                         break;
                     case REGRESSION:
-                        AlertDialogBox.showDialogBox("Ништяк");
-                        DialogBox cdb = new DialogBox();
-                        cdb.setGlassEnabled(true);
-                        cdb.setAnimationEnabled(true);
-                        cdb.setText("Ghbth ujdyj dbl);tnf");
-                        cdb.setWidget(table.getSimpleCloneTable(null));
-                        cdb.center();
-                        cdb.show();
-//                        Site.service.calculateSquareRegression(new SimpleAsyncCallback<Map<String, List<Double>>>() {
-//                            @Override
-//                            public void onSuccess(Map<String, List<Double>> result) {
-//                                AlertDialogBox.showDialogBox("Ништяк");
-//                                DialogBox cdb = new DialogBox();
-//                                cdb.setGlassEnabled(true);
-//                                cdb.setAnimationEnabled(true);
-//                                cdb.setWidget(table.getSimpleCloneTable(result));
-//                                cdb.center();
-//                                cdb.show();
-//                            }
-//                        });
+                        //@formatter:off
+//                        if (seriesList.size() > 2) {
+//                            Site.service.calculateSquareRegression(seriesList, new SimpleAsyncCallback<Map<String, List<Double>>>() {
+//                                @Override
+//                                public void onSuccess(Map<String, List<Double>> result) {
+//                                    final DialogBox cdb = new DialogBox();
+//                                    cdb.setGlassEnabled(true);
+//                                    cdb.setAnimationEnabled(true);
+//                                    cdb.setText("Результат регрессионного анализа методом наименьших квадратов");
+//                                    FlowPanel simpleCloneTable = table.getSimpleCloneTable(result);
+//                                    Btn closeBtn = new Btn("Закрыть", EButtonStyle.DEFAULT, new ClickHandler() {
+//                                        @Override
+//                                        public void onClick(ClickEvent event) {
+//                                            cdb.hide();
+//                                        }
+//                                    });
+//                                    simpleCloneTable.add(closeBtn);
+//                                    cdb.setWidget(simpleCloneTable);
+//                                    cdb.center();
+//                                    cdb.show();
+//                                }
+//                            });
+//                        }else{
+//                            AlertDialogBox.showDialogBox("Внимание", "Для подсчета корреляции выберите миниму 3 ряда ", EAlertType.WARNING);
+//                        }
+                      //@formatter:on
+                        AlertDialogBox.showDialogBox("Эта функция на данный момент не доступна", "", EAlertType.WARNING);
                         break;
                     case CLUSTERING:
+                        Integer parseInt = null;
+                        try {
+                            parseInt = Integer.parseInt(clusterCount);
+                        }
+                        catch (NumberFormatException e) {
+                            AlertDialogBox.showDialogBox("Внимание", "Укажите количество кластеррв", EAlertType.WARNING);
+                            return;
+                        }
+                        if (periodList.size() > 0 && seriesList.size() > 0 && parseInt > 0) {
+                            clusterPresenter.setCategories(periods,periodList);
+                            Site.service.doClustering(seriesList, periodList, parseInt, new SimpleAsyncCallback<List<Cluster>>() {
+                                @Override
+                                public void onSuccess(List<Cluster> result) {
+                                    clusterPresenter.showClusters(result);
+                                }
+                            });
+                        }
+                        else {
+                            AlertDialogBox.showDialogBox("Внимание", "Для выполнения кластеризации необходимо вырать как минимум 1 ряд, 1 столбец и количество кластеров должно быть хотя 1", EAlertType.WARNING);
+                        }
                         break;
                     default:
                         break;
@@ -138,6 +168,8 @@ public class SeriesEditPageView implements ISeriesEditPageView {
         panel.add(tp);
         correlationLabel.setStyleName("row correlation-label hide");
         panel.add(correlationLabel);
+        clusterPresenter = new ClusterPresenter();
+        panel.add(clusterPresenter);
         ccp = new ColumnChartPresenter();
         panel.add(ccp);
         lcp = new LineChartPresenter();
@@ -169,7 +201,7 @@ public class SeriesEditPageView implements ISeriesEditPageView {
                 Site.service.saveSeries(bean, new SimpleAsyncCallback<Long>() {
                     public void onSuccess(Long result) {
                         sender.hide();
-                        AlertDialogBox.showDialogBox("OK!", "Ряд успешно сохранен", EAlertType.SUCCES);
+                        AlertDialogBox.showDialogBox("OK!", "Ряд успешно сохранен", EAlertType.SUCCESS);
                         reset();
                     }
                 });
@@ -183,7 +215,7 @@ public class SeriesEditPageView implements ISeriesEditPageView {
             public void save(List<PeriodDto> list, final PeriodEditPopup sender) {
                 Site.service.savePeriods(list, new SimpleAsyncCallback<List<PeriodDto>>() {
                     public void onSuccess(List<PeriodDto> result) {
-                        AlertDialogBox.showDialogBox("OK!", "Все изменения внесены", EAlertType.SUCCES);
+                        AlertDialogBox.showDialogBox("OK!", "Все изменения внесены", EAlertType.SUCCESS);
                         sender.hide();
                         setPeriods(result);
                         reset();
@@ -231,7 +263,7 @@ public class SeriesEditPageView implements ISeriesEditPageView {
         Site.service.deleteSeries(seriesId, new SimpleAsyncCallback<Void>() {
             public void onSuccess(Void result) {
                 reset();
-                AlertDialogBox.showDialogBox("OK!", "Ряд успешно удален", EAlertType.SUCCES);
+                AlertDialogBox.showDialogBox("OK!", "Ряд успешно удален", EAlertType.SUCCESS);
             }
         });
     }

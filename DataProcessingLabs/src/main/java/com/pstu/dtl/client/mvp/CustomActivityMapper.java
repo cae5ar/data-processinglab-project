@@ -4,6 +4,7 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.pstu.dtl.client.components.ENavButtons;
+import com.pstu.dtl.client.components.PortalHeader;
 import com.pstu.dtl.client.mvp.activity.SeriesEditPageActivity;
 import com.pstu.dtl.client.mvp.place.SeriesEditPagePlace;
 
