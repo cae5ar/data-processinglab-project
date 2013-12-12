@@ -1,4 +1,4 @@
-package com.pstu.dtl.client.mvp;
+package com.pstu.dtl.client.components;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.pstu.dtl.client.Site;
-import com.pstu.dtl.client.mvp.SearchWidget.ISearchHandler;
+import com.pstu.dtl.client.components.SearchWidget.ISearchHandler;
 
 /**
  * Верхняя шапка сайта

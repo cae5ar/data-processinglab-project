@@ -33,7 +33,7 @@ public class LineChartPresenter extends AbstractChartPresenter {
         .setToolTip(new ToolTip()  
             .setFormatter(toolTipFormatter)  
         ); 
-        chart.getYAxis().setAxisTitleText("ВВП (%)").setMin(0);
+        chart.getYAxis().setMin(0);
     }
 
 }

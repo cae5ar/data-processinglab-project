@@ -14,6 +14,6 @@ public class ColumnChartPresenter extends AbstractChartPresenter {
             new ColumnPlotOptions().setPointPadding(0.2).setBorderWidth(0)).setLegend(
                 new Legend().setLayout(Legend.Layout.VERTICAL).setAlign(Legend.Align.LEFT).setVerticalAlign(Legend.VerticalAlign.TOP).setX(65).setY(30).setFloating(true).setBackgroundColor("#FFFFFF").setShadow(true)).setToolTip(
                     new ToolTip().setFormatter(toolTipFormatter));
-        chart.getYAxis().setAxisTitleText("ВВП (%)").setMin(0);
+        chart.getYAxis().setMin(0);
     }
 }

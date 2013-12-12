@@ -1,4 +1,4 @@
-package com.pstu.dtl.client.mvp.view;
+package com.pstu.dtl.client.components;
 
 import java.util.Collection;
 import java.util.Iterator;

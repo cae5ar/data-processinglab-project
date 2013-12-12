@@ -26,7 +26,7 @@ public class AlertDialogBox extends Composite {
 
     public enum EAlertType {
         INFO("alert-info"),
-        SUCCES("alert-success"),
+        SUCCESS("alert-success"),
         ERROR("alert-error"),
         WARNING("alert-warning");
 
@@ -119,11 +119,11 @@ public class AlertDialogBox extends Composite {
     }
 
     public static void showDialogBox(String strong) {
-        showDialogBox(new AlertDialogBox(strong, "", EAlertType.SUCCES));
+        showDialogBox(new AlertDialogBox(strong, "", EAlertType.SUCCESS));
     }
 
     public static void showDialogBox(String strong, String text) {
-        showDialogBox(new AlertDialogBox(strong, text, EAlertType.SUCCES));
+        showDialogBox(new AlertDialogBox(strong, text, EAlertType.SUCCESS));
     }
 
     public static void showDialogBox(String strong, String text, EAlertType type) {

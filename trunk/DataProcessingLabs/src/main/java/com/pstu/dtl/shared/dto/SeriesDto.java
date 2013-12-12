@@ -6,6 +6,7 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class SeriesDto extends EntityDto {
     private String name = null;
+    private Double[] toClasterDistance = null;
     private Map<Long, Double> values = new LinkedHashMap<Long, Double>();
 
     public SeriesDto() {
@@ -15,11 +16,24 @@ public class SeriesDto extends EntityDto {
     public SeriesDto(Long id) {
         super(id);
     }
+    
+    public SeriesDto(Long id, String name) {
+        super(id);
+        this.name = name;
+    }
 
     public SeriesDto(Long id, String name, Map<Long, Double> values) {
         super(id);
         this.name = name;
         this.values = values;
+    }
+    
+    public Double[] getToClasterDistance() {
+        return toClasterDistance;
+    }
+
+    public void setToClasterDistance(Double[] toClasterDistance) {
+        this.toClasterDistance = toClasterDistance;
     }
 
     public String getName() {

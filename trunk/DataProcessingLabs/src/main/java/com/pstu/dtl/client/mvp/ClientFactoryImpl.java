@@ -4,6 +4,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.pstu.dtl.client.components.NavigationBar;
+import com.pstu.dtl.client.components.PortalHeader;
 import com.pstu.dtl.client.mvp.iview.ISeriesEditPageView;
 import com.pstu.dtl.client.mvp.view.SeriesEditPageView;
 

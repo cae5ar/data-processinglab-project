@@ -27,8 +27,12 @@ public class CustomTextBox extends AbstractSimpleInput {
     public void addInputStyleName(String style) {
         textBox.addStyleName(style);
     }
-    
-    public TextBox getTextBox(){
+
+    public TextBox getTextBox() {
         return textBox;
+    }
+
+    public void setPlaceholder(String string) {
+        textBox.getElement().setAttribute("placeholder", string);
     }
 }

@@ -107,7 +107,7 @@ public class PeriodEditPopup extends CustomPopup {
                         public void onSuccess(Void result) {
                             periodsMap.remove(text);
                             itemPanel.removeFromParent();
-                            AlertDialogBox.showDialogBox("OK!", "Период успешно удален", EAlertType.SUCCES);
+                            AlertDialogBox.showDialogBox("OK!", "Период успешно удален", EAlertType.SUCCESS);
                         }
                     });
                 }
